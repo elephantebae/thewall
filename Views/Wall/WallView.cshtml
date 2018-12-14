@@ -1,0 +1,70 @@
+@using System;
+@using System.Collections.Generic;
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Hello!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/style.css"/>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-text">CodingDojo Wall</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p class="navbar-text">Welcome,@ViewBag.CurrentUser</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="row" style="margin-left:5%;">
+                    <partial name="MessagePartial"/>
+                </div>
+            @foreach(var msg in ViewBag.AMessages)
+            {
+                ViewData["MessageId"]=msg.MessageId;
+    
+                <div class="row" style="Margin-top:2%;">
+                    <span>@msg.Creator.FirstName @msg.Creator.LastName - @msg.created_at.ToString("MM/dd/yyyy hh:mm tt")</span>
+                </div>
+                <div class="row">
+                    <span class="form-control">@msg.Msg</span>
+                        @foreach(var cmt in ViewBag.AComments)
+                        {
+                            if(cmt.MessageId == @msg.MessageId)
+                            {
+                                <div class="row">
+                                    <span>@cmt.Creator.FirstName @cmt.Creator.LastName - @msg.created_at.ToString("MM/dd/yy hh:mm tt")</span>
+                                    <div class="row">
+                                        <span class="form-control">@cmt.Cmt</span>
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                    
+                    <div class="row" style="margin-left:10%;">
+                        <div class="row">
+                            <partial name="CommentPartial" view-data="ViewData"/>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+                
+
+
+            </div>
+        
+        </div>
+
+    </body>
+
+</html>

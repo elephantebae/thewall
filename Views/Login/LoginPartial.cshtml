@@ -1,0 +1,44 @@
+@using System;
+@using System.Collections.Generic;
+@using thewall.Models;
+@model Login;
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Hello!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/style.css"/>
+
+    </head>
+    <body>
+        <div class="container">
+            <h2>Login</h2>
+            <form asp-action="Login" asp-controller="Login" method="post">
+                <span asp-validation-for="LogEmail"></span>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label asp-for="LogEmail">Email</label>
+                    </div>
+                    <div class="col-sm-1-offset-1">
+                        <input asp-for="LogEmail">
+                    </div>
+                </div>
+                <span asp-validation-for="LogPassword"></span>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label asp-for="LogPassword">Password</label>
+                    </div>
+                    <div class="col-sm-1-offset-1">
+                        <input asp-for="LogPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

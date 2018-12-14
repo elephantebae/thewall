@@ -1,0 +1,37 @@
+@using System;
+@using System.Collections.Generic;
+@using thewall.Models
+@model Comment
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Hello!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/style.css"/>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <form asp-action="commentpost" asp-controller="Wall" method="post">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="row">
+                                <label asp-for="Cmt">Post a comment</label>
+                            </div>
+                            <div class="row">
+                                <textarea asp-for="Cmt" cols="100" rows="3"></textarea>
+                                <input type="hidden" name="MessageId" value=@ViewData["MessageId"]>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-primary" type="submit">Post a comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>
